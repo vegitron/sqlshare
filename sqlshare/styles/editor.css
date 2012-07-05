@@ -1,0 +1,150 @@
+/* toolbar general */
+.yui-toolbar-group { white-space: nowrap; }
+.ie7 .yui-toolbar-group-insertitem { width: 240px; }
+.yui-toolbar-group-padding, .yui-toolbar-group-border { display: none; }
+
+/* toolbar buttons */
+.yui-toolbar-container.yui-toolbar-grouped .yui-toolbar-group .yui-toolbar-groupitem span.yui-toolbar-separator { width: 0; }
+/* fontname */
+.yui-toolbar-fontname-georgia { font-family: Georgia; }
+/* table */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-inserttable span.yui-toolbar-icon {background-image: url(../images/yui_editor/table.gif);background-position: 0px 0px;top: 5px;left: 7px;}
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-inserttable-selected span.yui-toolbar-icon {background-image: url(../images/yui_editor/table.gif);background-position: 0px 0px;top: 5px;left: 7px;}
+/* media */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertmedia span.yui-toolbar-icon {background-image: url(../images/yui_editor/youtube.gif);background-position: 0px 0px;top: 3px;left: 6px;}
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertmedia-selected span.yui-toolbar-icon {background-image: url(../images/yui_editor/youtube.gif);background-position: 0px 0px;top: 3px;left: 6px;}
+/* latex */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertlatex span.yui-toolbar-icon {background-image: url(../images/yui_editor/latex.gif);background-position: 0px 0px;top: 3px;left: 6px;}
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertlatex-selected span.yui-toolbar-icon {background-image: url(../images/yui_editor/latex.gif);background-position: 0px 0px;top: 3px;left: 6px;}
+/* icon (smiley) */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-inserticon span.yui-toolbar-icon {background:url(../javascript/yui/build/editor/assets/skins/sam/editor-sprite.gif) no-repeat 0 -1008px; left: 6px;}
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-inserticon-selected span.yui-toolbar-icon { background-image:url(../javascript/yui/build/editor/assets/skins/sam/editor-sprite.gif);}
+/* entity */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertentity span.yui-toolbar-icon {background-image: url(../images/yui_editor/entity.png);background-position: 0px 0px;top: 5px;left: 9px;}
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-insertentity-selected span.yui-toolbar-icon {background-image: url(../images/yui_editor/entity.png);background-position: 0px 0px;top: 5px;left: 9px;}
+/* horizontal rule */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-inserthorizontalrule span.yui-toolbar-icon {background-image: url(../images/yui_editor/horizontal_rule.gif);background-position: 0px 0px;top: 0px;left: 5px;}
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-inserthorizontalrule-selected span.yui-toolbar-icon {background-image: url(../images/yui_editor/horizontal_rule.gif);background-position: 0px 0px;top: 0px;left: 5px;}
+/* source mode */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-editsource span.yui-toolbar-icon {background-image: url(../images/yui_editor/html_editor.gif );background-position: 0px 0px;top: 4px; left: 6px; }
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-editsource-selected span.yui-toolbar-icon {background-image: url(../images/yui_editor/html_editor.gif );background-position: 0px 0px;top: 4px;left: 6px;}
+/* spell check */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-spellcheck span.yui-toolbar-icon {background-image: url(../images/yui_editor/spellcheck.gif );background-position: 0px 0px;top: 1px; left: 6px; }
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-spellcheck-selected span.yui-toolbar-icon {background-image: url(../images/yui_editor/spellcheck.gif );background-position: 0px 0px;top: 1px;left: 6px;}
+
+
+
+/* Dialog box */
+.yui-skin-sam .yui-editor-panel { font-size:1em; background-color:#FFF; border: 10px solid #7F9DB9; padding: 10px; }
+.yui-skin-sam .yui-editor-panel .hd { font-size:100%; line-height:100%; font-weight:bold; padding: 5px 10px 0 10px; margin: 0; position: static; }
+.yui-skin-sam .yui-editor-panel .hd h3 { font-size: 1.2em; margin: 0; padding: 0; color: #555; line-height: 1.5em; background: none; height: auto; border: none; text-indent: 0; position: static; }
+.yui-skin-sam .yui-editor-panel .hd span.close { position: absolute; top: 3px; right: 0px; height: 16px; width: 16px; background: url(../images/container-close_dialog_blue.gif) no-repeat 0 0; cursor: pointer; text-indent:-10000em; text-decoration:none; }
+.yui-skin-sam .yui-editor-panel .hd span.knob { display: none; background-image: url(../images/yui_editor/knob.gif); top: -20px; }
+.yui-skin-sam .yui-editor-panel .bd { padding:10px; border: none; background-color: #fff; width: auto; }
+.yui-skin-sam .yui-editor-panel .bd p { margin:0 0 1em 0; }
+.yui-skin-sam .yui-editor-panel .bd .sol_panel_height_limit { max-height: 450px; overflow-y: auto; } /* won't work in ie6 */
+.yui-skin-sam .yui-editor-panel .bd .sol_form_container { width: auto; margin: 0; } /* overrides 600px wide forms */
+.yui-skin-sam .yui-editor-panel .ft { display: none; }
+
+.yui-editor-panel .bd div.yui-editor-body-cont { padding: 0; }
+
+.yui-editor-panel .yui-editor-panel-column { width: 50%; float: left; }
+
+/* Form elements in Dialog */
+.yui-skin-sam .yui-editor-panel label { margin-bottom: 0; }
+.yui-skin-sam .yui-editor-panel label strong { font-size: 1em; text-align: left; }
+
+/* Overrides for the menus inside of panels */
+.yui-skin-sam .yui-editor-panel .yuimenu .bd { border: 1px solid #808080; padding: 0; }
+.yui-skin-sam .yui-editor-panel .yui-color-button-menu .bd { padding: 0; }
+
+/* Dialog textflow/padding/border toolbar */
+.yui-skin-sam .yui-editor-panel .yui-toolbar-container { background-color: transparent; }
+.yui-skin-sam .yui-editor-panel .yui-toolbar-container .yui-toolbar-subcont { padding: 0; margin: 0; }
+.yui-skin-sam .yui-editor-panel .yui-toolbar-group-textflow, 
+.yui-skin-sam .yui-editor-panel .yui-toolbar-group-padding,
+.yui-skin-sam .yui-editor-panel .yui-toolbar-group-border { width: auto; display: block; }
+.yui-skin-sam .yui-editor-panel .yui-toolbar-group h3 { float: none; font-size: 1em; margin: 1em 0 0; text-align:left;}
+.yui-skin-sam .yui-editor-panel .yui-toolbar-align { width: 90px; }
+
+/* Dialog error messages */
+.yui-editor-panel-err { color: #EE0000; font-size: 0.8em; font-weight: bold; clear: both; display: none; }
+
+/* Dialog buttons */
+.yui-editor-panel-buttons { text-align: right; margin-top: 20px; }
+.yui-editor-panel-buttons button { width: 6em; margin: 0 0 0 10px; white-space: nowrap; }
+
+/* Preview boxes */
+.yui-preview-text { font-size: 1.5em; font-weight: bold; color: #bbb; text-align: center; padding-top: 40px; }
+.yui-preview-enabled .yui-preview-text { display: none; }
+
+/* CreateLink dialog */
+.yui-editor-panel .yui-editor-panel-createlink .yui-createlink-form .yui-editor-panel-err { padding-left: 10.3em; margin-bottom: 1em; }
+.yui-editor-panel .yui-editor-panel-createlink a.yui-createlink-remove { float: left; margin-top: .25em; }
+.yui-editor-panel .yui-editor-panel-createlink label strong { width: 8em; }
+.yui-editor-panel .yui-editor-panel-createlink label input { width: 68%; }
+.yui-editor-panel .yui-editor-panel-createlink label select { float: left; margin-left: .25em; }
+.yui-editor-panel .yui-editor-panel-createlink label.yui-createlink-target input { width: auto; margin-left: 0; margin-right: .25em; }
+
+/* InsertImage dialog */
+.yui-editor-panel .yui-editor-panel-insertimage .sol_form_container label strong { float: none; display: block; width: auto; }
+.yui-editor-panel .yui-editor-panel-insertimage .sol_form_container label input { float: none; margin-left: 0; }
+.yui-editor-panel .yui-editor-panel-insertimage .sol_form_container .yui-insertimage-upload label { margin: 0; padding: 0; }
+.yui-editor-panel .yui-editor-panel-insertimage .sol_form_container .yui-insertimage-upload label strong { display: inline; }
+.yui-editor-panel .yui-editor-panel-insertimage .sol_form_container .yui-insertimage-url label,
+.yui-editor-panel .yui-editor-panel-insertimage .sol_form_container .yui-insertimage-url label strong { display: inline; }
+.yui-editor-panel .yui-editor-panel-insertimage .sol_form_container .yui-insertimage-url .yui-upload-url-toggle { display: block; padding-top: 5px; }
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-insertimage .yui-toolbar-group-align { display: none; }
+.yui-insertimage-preview 	{ margin-top: 1em; height: 150px; width: 392px; background-color: #FFFFFF; border: 1px solid #666666; overflow: auto; }
+.yui-insertimage-preview .yui-preview-text { padding-top: 55px; }
+.yui-insertimage-alt { padding-top: 1em; padding-bottom: .5em; }
+
+/* InsertLaTeX dialog */
+.ie6 .yui-editor-panel .yui-editor-panel-insertlatex .sol_form_container .sol_form_tip { zoom: 1; } /* Fixes ie6 bug where text isn't rendered */
+.yui-editor-panel .yui-editor-panel-insertlatex .sol_form_container label strong { float: none; display: block; width: auto; }
+.yui-editor-panel .yui-editor-panel-insertlatex .sol_form_container label input { margin-left: 0; }
+.yui-editor-panel .yui-editor-panel-insertlatex .sol_form_container label textarea { width: 350px; height: 75px; }
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-insertlatex .yui-toolbar-group-align { display: none; }
+.yui-insertlatex-preview  { width: 392px; height: 125px; background-color: #FFFFFF; border: 1px solid #666666; overflow: auto; margin-top: 1em; }
+.yui-insertlatex-preview .yui-preview-text { padding-top: 45px; }
+.yui-insertlatex-loading  { background: url(../images/processing_32.gif) center no-repeat; background-color: #FFFFFF; }
+.yui-insertlatex-alt { padding-top: 1em; padding-bottom: .5em; }
+
+/* InsertMedia dialog */
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-insertmedia label strong { float: none; display: block; width: auto; }
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-insertmedia label textarea { width: 350px; height: 50px; font-size: .8em; }
+.yui-insertmedia-preview  { width: 390px; height: 200px; background-color: #FFFFFF; border: 1px solid #666666; overflow: auto; margin-top: 1em; }
+.yui-insertmedia-preview .yui-preview-text { padding-top: 75px; }
+
+/* InsertTable dialog */
+.yui-editor-panel-inserttable label strong { width: auto; }
+.yui-editor-panel-inserttable label input { margin: 0 8px; vertical-align: middle; }
+.yui-editor-panel .yui-editor-panel-inserttable a.yui-inserttable-remove { float: left; margin-top: .25em; }
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-inserttable .yui-toolbar-group-textflow { display: none; }
+
+/* SpellCheck dialog */
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-spellcheck .yui-spellcheck-word { margin-bottom: .25em; }
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-spellcheck label strong { float: none; width: auto; display: block; }
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-spellcheck input 	{ float: none; margin-left: 0; }
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-spellcheck select { width: 98%; }
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-spellcheck select option { cursor: pointer; }
+.yui-skin-sam .yui-editor-panel .yui-editor-panel-spellcheck select[disabled] option { cursor: default; }
+.yui-spellcheck-replace-buttons { float: left; }
+.yui-spellcheck-replace-buttons button { margin: 0 10px 0 0; width: 7em; }
+
+/* InsertEntity menu */
+.yui-editor-panel-insertentity td { padding: 2px 0px; border-right: 1px solid #CCC; border-bottom: 1px solid #CCC; text-align: center; width: 16px; cursor: pointer; font-size: 14px; font-family: "Times New Roman"; }
+#insert-entity-tooltip.yui-tt .bd { font-size: 30px; line-height: 36px; border: 1px solid #333; text-align: center; color: #111; background-color: #EEE; width: 36px; height: 36px; padding: 5px; font-family: "Times New Roman"; }
+
+/* InsertIcon menu */
+.yui-editor-panel-inserticon td { border-right: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC; text-align: center; cursor: pointer; }
+
+/* HTMLSource mode */
+.yui-editor-textarea { border: 0; margin: 0; padding: 0;}
+.yui-editor-hidden {visibility: hidden;top: -9999px;left: -9999px;position: absolute;}
+
+/* resizing proxy */
+.yui-skin-sam .yui-editor-container .yui-resize-proxy { border: 1px dashed #426FD9; }
+
+/* resizing handle */
+.yui-skin-sam .yui-editor-container .yui-resize-handle-br { background: transparent url(../images/resize_br.gif) no-repeat scroll 0 0; width: 13px; height: 13px; position: absolute; bottom: 4px; right: 4px; }

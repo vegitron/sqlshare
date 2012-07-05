@@ -1,0 +1,8 @@
+/* Modified YUI Reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,iframe{margin:0;padding:0;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+q:before,q:after{content:'';}
+p{margin:0 0 1em;}
+fieldset{border:1px solid #ccc;padding:.8em;}
+fieldset,img,iframe,abbr,acronym{border:0;}

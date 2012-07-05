@@ -1,0 +1,206 @@
+/* 
+
+Only styles that are necessary for the functioning of the solstice framework 
+should go in this file.
+
+*/
+
+.soldevtoolbar { padding: 5px; background-color: #A70000; color: #fff; font-size: 11px; position: fixed; bottom: 0; }
+.soldevtoolbar a, .soldevtoolbar a:link, .soldevtoolbar a:hover { color: #fff; text-decoration: underline; padding: 0 7px; }
+.soldevtoolbar code { font-size: 11px; color: #eee; }
+.soldevtoolbar span { padding: 0 7px; white-space: nowrap; }
+.soldevjslog { padding: 5px; background-color: #A70000; color: #fff; font-size: 11px; position: fixed; top: 0; width:100%; display:none; }
+
+.solwireframe { padding: 1px; margin: 1px; border: 1px green solid; }
+.solwireframe .solwireframetxt { color: white; font-size: 10px; font-weight: normal; text-decoration: none; position: absolute; background-color: green; z-index: 1000; padding: 1px 5px; opacity: .5; margin: -1px 0 0 -1px; }
+.solwireframe div.solwireframetxt:hover { z-index: 1001; background-color: #00A600; opacity: 1; }
+
+.transparent { filter: alpha(opacity=0); opacity: 0.0; background-color: gray; display:none; width: 0; height: 0; display: none; position: absolute; color: white; border: 1px gray solid; }
+
+/* flyout menus */
+.sol_flyoutmenu img        { border: 0px; vertical-align: middle; }
+
+/* YUI Menu Overrides */
+.yui-skin-sam .yuimenuitemlabel 			{ padding: 4px 20px; cursor: pointer; color: #0084B5; }
+.yui-skin-sam .yuimenuitemlabel:visited     { color: #0084B5; }
+.yui-skin-sam .yuimenuitem-selected			{ background-color: #d7e6fa; }
+.yui-skin-sam .yuimenuitemlabel-disabled, .yui-skin-sam .yuimenuitemlabel-disabled:visited 	{ color: #a6a6a6; }
+
+.yui-skin-sam .yuimenuitemlabel-checked-disabled, .yui-skin-sam .yuimenuitemlabel-checked-disabled:visited 	{ color: #000; }
+.yui-skin-sam .yuimenuitem-checked-disabled { background-image: url(../javascript/yui/build/menu/assets/skins/sam/menuitem_checkbox.png); }
+
+.yui-skin-sam a.yuimenuitemlabel:hover 		{ *text-decoration: none; } /* ie6 hack */
+
+/* YUI Menu with scrolls */
+.yui-skin-sam .yuimenu .yui-menu-body-scrolled { overflow-x: hidden; overflow-y: auto;}
+.yui-skin-sam .yuimenu .ft.bottomscrollbar,
+.yui-skin-sam .yuimenu .hd.topscrollbar { display: none; } /* hides default yui scroll areas */
+.yui-skin-sam .yuimenu .yui-menu-body-scrolled .yuimenuitemlabel { padding-right: 35px; } /* adds extra right padding so not covered by scroll bar */
+
+/* Messaging */
+#sol_message_area {	height: 2em; padding: 12px 0 5px 0; }
+#sol_message_container .bd { padding: 5px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
+#sol_message_container .bd .sol-message { padding: 0 12px 0 30px; }
+#sol_message_container .sol-message-success     { background: #CCEDBC url(../images/messaging/success.gif) no-repeat scroll 3px 2px; }
+#sol_message_container .sol-message-error       { background: #EE0000 url(../images/messaging/error.gif) no-repeat scroll 3px 2px; color: #FFFFFF; font-weight: bold; }
+#sol_message_container .sol-message-information { background: #D1DFE8 url(../images/messaging/info.gif) no-repeat scroll 3px 3px; }
+#sol_message_container .sol-message-warning     { background: #FCD17A url(../images/messaging/warning.gif) no-repeat scroll 4px 3px; }
+/*#sol_message_container .sol-message-inprogress  { background: #C8EEF7 url(../images/processing.gif) no-repeat scroll 5px; }*/
+#sol_inprogress_messaging .sol-message-inprogress  { background: #C8EEF7 url(../images/processing.gif) no-repeat scroll 5px; }
+#sol_message_container .sol-message-error a { color: #FFFFFF; text-decoration: underline; cursor: pointer; }
+
+/* New Messaging Styling */
+#sol_message_area .sol-message-information { background: #D1DFE8 url(../images/messaging/info.gif) no-repeat scroll 3px 3px; padding: 5px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
+	
+/*******
+"Give us feedback" messaging 
+*******/ 
+.message { border-radius: 5px; box-shadow: 2px 3px 4px #777777; -moz-box-shadow: 2px 3px 4px #777777; -webkit-box-shadow: 2px 3px 4px #777777;  -moz-border-radius: 5px; }
+.message.feedback { text-align: center; background-color: #DDDDBB; padding: 8px;}
+
+
+
+/* YUI Tooltips */
+.yui-skin-sam .yui-tt .bd { font-size: 11px; line-height: 1.4; height: 1%; border: 1px solid #333; padding: 2px 4px; color: #666; background-color: #FFFFCC; position: relative; top: 0; left: 0; z-index: 1;}
+.yui-skin-sam .yui-tt-shadow { top:2px; right:-2px; left:-2px; bottom:-2px; background-color:#000; }
+.yui-skin-sam .yui-tt-shadow-visible { 
+	-moz-opacity: 0.12; 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=12)"; /* For IE */ 
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=12);
+	opacity: .12;
+}
+
+
+/* processing mask & message box */
+.yui-overlay { position:absolute; display:block;}
+
+.mask { 
+	background-color:#ccc; 
+	z-index:1; 
+	display:none; 
+	position:absolute; 
+	top:0; 
+	left:0; 
+	-moz-opacity: 0.5; 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+	opacity:.50; 
+}
+
+.yui-panel-container { position:absolute; top: -100px; background-color:transparent; z-index:6; visibility:hidden; overflow:visible; width:auto; } 
+.yui-panel-container .underlay { 
+	height: 100%; 
+	position: absolute; 
+	top: 3px; 
+	right: -3px; 
+	left: -3px; 
+	bottom: -3px; 
+	background-color: #000; 
+	-moz-opacity: 0.12; 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=12)"; /* For IE */ 
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=12);
+	opacity: .12;
+}
+	
+.yui-panel { visibility:hidden; border-collapse:separate; position:relative; left:0px;top:0px; font-size:1em; background-color:#FFF; border: 10px solid #7F9DB9; z-index:1; padding: 10px; overflow:hidden; }
+.yui-panel .hd { font-size:100%; line-height:100%; font-weight:bold; padding:5px 10px 0 10px; }
+.yui-panel .hd h2 { margin: 0; color: #555; line-height: 1.5em; }
+.yui-panel .bd { overflow:hidden; padding:10px; }
+.yui-panel .bd p { margin:0 0 1em 0; }
+.yui-panel .bd .sol_panel_height_limit { max-height: 450px; overflow-y: auto; } /* won't work in ie6 */
+.yui-panel .ft { padding:4px; overflow:hidden; }
+
+.yui-dialog .ft, .simple-dialog .ft { padding-bottom:5px; padding-right:5px; text-align:right; }
+.yui-dialog form, .yui-simple-dialog form {	margin:0; }
+
+
+/* Dialog box */
+.container-close { position: absolute; top: 3px; right: 0px; height: 16px; width: 16px; background: url(../images/container-close_dialog_blue.gif) no-repeat 0 0; cursor: pointer; text-indent:-10000em; text-decoration:none; }
+
+/* History iframe */
+#solstice_history_iframe { position: absolute; top: 0; left: 0; width: 1px; height: 1px; visibility: hidden; }
+
+/* pop-ins */
+.sol_popin            { visibility: hidden; z-index: 111; position: absolute; border: 2px outset #999999; background-color: #FFFFFF; width: 300px; top: 0; left: 0; }
+.sol_popin_title      { padding: 4px; background-color: #CCCCCC; font-weight: bold; cursor: pointer; }
+.sol_popin_title img  { border: 0px; float: right; }
+.sol_popin_content    { padding: 4px; }
+.dia-warning-header {
+	padding-left:30px;
+	background: transparent url(../images/warning.gif) 2px 0px no-repeat;
+}
+
+/* file uploads */
+.sol_upload_container {overflow: hidden; vertical-align: middle; display: block; width: 100%; }
+.sol_upload_form_container { min-height: 1em; white-space: nowrap; margin-bottom: 10px; }
+.sol_upload_form_container form { display: inline; margin: 0; }
+.sol_upload_form_container input { vertical-align: middle; margin-bottom: 4px;}
+.sol_upload_form_container input.sol_hidden_input { position: absolute; top: -100px; }
+.sol_upload_form_container a   { margin-left: 1em; font-size: .8em; }
+.sol_upload_meter_container { border: 1px solid black; height: 10px; width: 300px; }
+.sol_upload_meter_progress_bar { height: 10px; width: 0px; position: relative; background: #81cd70 url(../images/progress_bar_bg.jpg) repeat-x top left; }
+.sol_upload_meter_percentage { font-size: .8em; width: 300px; text-align: center; margin-top: -12px; position: relative; }
+.sol_file_upload_spacer { font-size: 2px; border: 1px solid red;}
+
+.sol_file_upload_remove { display: inline; }
+
+.sol_upload_form_container .file_editable { color: red; }
+.sol_upload_form_container .file_editable:hover { color: blue; }
+
+.sol_upload_form_container textarea { margin-left: 24px; }
+.sol_upload_form_description_container { width: 550px; }
+
+/* file view as html */
+.sol-file-html { margin: 20px 0 0 0; }
+.sol-file-html h2.sol-page-title {margin:0;}
+.sol-file-html img { text-align: center; display: block; margin-top: 10px; }
+.sol-file-html .sol-file-actions {margin-bottom:10px;}
+
+table.sol_file_xls    { border-color: #333; border-width: 0 0 1px 1px; border-style: solid; border-spacing: 0; border-collapse: collapse; }
+table.sol_file_xls td { border-color: #333; border-width: 1px 1px 0 0; border-style: solid; background-color: #eee; margin: 0; padding: 2px; }
+table.sol_file_xls td b { white-space: nowrap; }
+
+/* Code view */
+ol.sol-code { background-color: #ddd; overflow: none; font-family: "Courier New",Courier,monospace; margin: 0; padding-left: 4em; }
+ol.sol-code li { background-color: #eee; color: #888; padding: 0 0.8em; }
+ol.sol-code li:first-child { padding-top: 1em; }
+ol.sol-code li:last-child  { padding-bottom: 1em; }
+ol.sol-code li pre { color: #333; font-family: "Courier New",Courier,monospace; font-size: 0.9em; line-height: 1.3em; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; }
+ol.sol-code li.more { list-style: none; color: #333; padding-top: 1.6em; font-family: Verdana, Arial, sans-serif; font-style: italic; }
+
+/* Syntax highlighting */
+.sol-code span.code_alert    { color: #0000ff; }
+.sol-code span.code_basen    { color: #007f00; }
+.sol-code span.code_bstring  { color: #c9a7ff; }
+.sol-code span.code_char     { color: #ff00ff; }
+.sol-code span.code_comment  { color: #7f7f7f; }
+.sol-code span.code_datatype { color: #0000ff; }
+.sol-code span.code_decval   { color: #00007f; }
+.sol-code span.code_error    { color: #ff0000; font-weight: bold; font-style: italic; }
+.sol-code span.code_float    { color: #00007f; }
+.sol-code span.code_function { color: #007f00; }
+.sol-code span.code_istring  { color: #ff0000; }
+.sol-code span.code_keyword  { color: #770; }
+.sol-code span.code_operator { color: #ffa500; }
+.sol-code span.code_others   { color: #b03060; }
+.sol-code span.code_regionmarker { color: #96b9ff; }
+.sol-code span.code_reserved { color: #9b30ff; }
+.sol-code span.code_string   { color: #ff0000; }
+.sol-code span.code_variable { color: #0000ff; }
+.sol-code span.code_warning  { color: #0000ff; }
+
+/* Calendar widget */
+
+.sol_cal		{ display: inline; }
+.sol_cal input	{ margin: 0; }
+.sol_cal img	{ vertical-align: text-bottom; }
+.sol_time		{ display: inline; margin-left: 1.5em; }
+.yui-calcontainer {	position: absolute; }
+
+@media print {
+	.soldevtoolbar { display: none; }
+}
+
+/* Calender panel override */
+.calendar-container { border: none; padding: 0; width: 203px; height: 238px; }
+.calendar-container .bd { padding: 0; }

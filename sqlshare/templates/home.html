@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <script>SolTimer = { load: new Date().getTime() };</script>
+    <title>SQLShare</title>
+    <base id="solstice_base" href="/"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+
+    <script type="text/javascript">
+        solstice_document_base      = '';
+        webservice_rest_root        = '';
+        solstice_static_base        = null;
+        solstice_session_app_key    = '__SQLShare__';
+        solstice_subsession         = '';
+        solstice_subsession_chain   = '';
+        solstice_subsession_seq     = '0';
+        solstice_development_mode   = true;
+        solstice_xsrf_token         = '';
+        use_view_wireframes         = false;
+        current_year                = 2012;
+
+        solstice_user               = { login_name: "pmichaud", name: "", surname: "", email: "vegitron@gmail.com", nonacting_login_name: "", nonacting_name: "", nonacting_surname: "", sys_name: "", sys_surname: "", sys_email: "pmichaud@uw.edu", is_override: false, is_actas: false };
+
+    </script>
+
+    <script type="text/javascript" src="javascript/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="javascript/yui_config.js"></script>
+    <script type="text/javascript" src="javascript/yui/3.3.0/build/yui/yui-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/3.3.0/build/base/base-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/3.3.0/build/loader/loader-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/3.3.0/build/node/node-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/3.3.0/build/oop/oop-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/3.3.0/build/event/event-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/3.3.0/build/event-custom/event-custom-base-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/3.3.0/build/queue-promote/queue-promote-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/3.3.0/build/datatype/datatype-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/3.3.0/build/io/io-min.js"></script>
+    <script type="text/javascript" src="javascript/solstice.js"></script>
+    <script type="text/javascript" src="javascript/string.js"></script>
+    <script type="text/javascript" src="javascript/remote.js"></script>
+    <script type="text/javascript" src="javascript/lang.js"></script>
+    <script type="text/javascript" src="javascript/css_browser_selector.js"></script>
+    <script type="text/javascript" src="javascript/element.js"></script>
+    <script type="text/javascript" src="javascript/file_upload.js"></script>
+    <script type="text/javascript" src="javascript/thumbnail.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/yahoo/yahoo-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/event/event-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/dom/dom-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/dragdrop/dragdrop-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/connection/connection-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/animation/animation-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/container/container-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/element/element-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/menu/menu-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/button/button-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/tabview/tabview-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/calendar/calendar-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/resize/resize-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/datasource/datasource-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/paginator/paginator-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/datatable/datatable-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/autocomplete/autocomplete-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/slider/slider-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/colorpicker/colorpicker-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/json/json.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/history/history-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/charts/charts-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/editor/editor-min.js"></script>
+    <script type="text/javascript" src="javascript/yahooui.js"></script>
+    <script type="text/javascript" src="javascript/editor.js"></script>
+    <script type="text/javascript" src="javascript/editor/createlink.js"></script>
+    <script type="text/javascript" src="javascript/editor/insertimage.js"></script>
+    <script type="text/javascript" src="javascript/editor/insertmedia.js"></script>
+    <script type="text/javascript" src="javascript/editor/inserttable.js"></script>
+    <script type="text/javascript" src="javascript/editor/insertlatex.js"></script>
+    <script type="text/javascript" src="javascript/editor/insertentity.js"></script>
+    <script type="text/javascript" src="javascript/editor/inserticon.js"></script>
+    <script type="text/javascript" src="javascript/editor/spellcheck.js"></script>
+    <script type="text/javascript" src="javascript/flyout.js"></script>
+    <script type="text/javascript" src="javascript/aria/containerariaplugin-min.js"></script>
+    <script type="text/javascript" src="javascript/aria/menuariaplugin-min.js"></script>
+    <script type="text/javascript" src="javascript/aria/tabviewariaplugin-min.js"></script>
+    <script type="text/javascript" src="javascript/aria/buttonariaplugin-min.js"></script>
+    <script type="text/javascript" src="javascript/yui/build/uploader/uploader.js"></script>
+    <script type="text/javascript" src="javascript/uploader.js"></script>
+    <script type="text/javascript" src="javascript/sol_base.js"></script>
+    <script type="text/javascript" src="javascript/sol_view.js"></script>
+    <script type="text/javascript" src="javascript/ss_base.js"></script>
+    <script type="text/javascript" src="javascript/query_base.js"></script>
+    <script type="text/javascript" src="javascript/sqlshare.js"></script>
+    <script type="text/javascript" src="javascript/constants.js"></script>
+    <script type="text/javascript" src="javascript/navigation.js"></script>
+    <script type="text/javascript" src="javascript/query.js"></script>
+    <script type="text/javascript" src="javascript/query_queue.js"></script>
+    <script type="text/javascript" src="javascript/upload.js"></script>
+    <script type="text/javascript" src="javascript/all_tables.js"></script>
+    <script type="text/javascript" src="javascript/all_queries.js"></script>
+    <script type="text/javascript" src="javascript/shared_queries.js"></script>
+    <script type="text/javascript" src="javascript/my_queries.js"></script>
+    <script type="text/javascript" src="javascript/tagged_queries.js"></script>
+    <script type="text/javascript" src="javascript/recent_queries.js"></script>
+    <script type="text/javascript" src="javascript/table.js"></script>
+    <script type="text/javascript" src="javascript/saved_query.js"></script>
+    <script type="text/javascript" src="javascript/codemirror/codemirror.js"></script>
+    <script type="text/javascript" src="javascript/table_tabs.js"></script>
+    <script type="text/javascript" src="javascript/view.js"></script>
+    <script type="text/javascript" src="javascript/view/query_list_base.js"></script>
+    <script type="text/javascript" src="javascript/view/table_date_cell.js"></script>
+    <script type="text/javascript" src="javascript/view/table_name_cell.js"></script>
+    <script type="text/javascript" src="javascript/view/table_owner_cell.js"></script>
+    <script type="text/javascript" src="javascript/view/table.js"></script>
+    <script type="text/javascript" src="javascript/view/table/rename.js"></script>
+    <script type="text/javascript" src="javascript/view/table/change_description.js"></script>
+    <script type="text/javascript" src="javascript/view/saved_query.js"></script>
+    <script type="text/javascript" src="javascript/view/saved_query/edit.js"></script>
+    <script type="text/javascript" src="javascript/view/saved_query/rename.js"></script>
+    <script type="text/javascript" src="javascript/view/saved_query/change_description.js"></script>
+    <script type="text/javascript" src="javascript/view/saved_query/change_statement.js"></script>
+    <script type="text/javascript" src="javascript/view/saved_query/confirm_delete.js"></script>
+    <script type="text/javascript" src="javascript/view/saved_query/deleting.js"></script>
+    <script type="text/javascript" src="javascript/view/saved_query/description_area.js"></script>
+    <script type="text/javascript" src="javascript/view/query.js"></script>
+    <script type="text/javascript" src="javascript/view/query/save_panel.js"></script>
+    <script type="text/javascript" src="javascript/view/query/sharing_panel.js"></script>
+    <script type="text/javascript" src="javascript/view/uploader/parser.js"></script>
+    <script type="text/javascript" src="javascript/view/uploader/options.js"></script>
+    <script type="text/javascript" src="javascript/view/all_queries/list.js"></script>
+    <script type="text/javascript" src="javascript/view/my_queries.js"></script>
+    <script type="text/javascript" src="javascript/view/tagged_queries.js"></script>
+    <script type="text/javascript" src="javascript/view/shared_queries/list.js"></script>
+    <script type="text/javascript" src="javascript/view/query_queue.js"></script>
+    <script type="text/javascript" src="javascript/manage_credentials.js"></script>
+    <script type="text/javascript" src="javascript/tagging.js"></script>
+    <script type="text/javascript" src="javascript/view/sidebar_lists.js"></script>
+
+    <script type="text/javascript">
+      function initApplication() {
+        SolTimer.appInit = new Date().getTime();
+
+        (new SQLShare('ss_app')).run();
+        SolTimer.postAppInit = new Date().getTime();
+      }
+      </script>
+
+
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/menu/assets/skins/sam/menu.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/button/assets/skins/sam/button.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/tabview/assets/skins/sam/tabview.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/autocomplete/assets/skins/sam/autocomplete.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/assets/skins/sam/resize.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/calendar/assets/skins/sam/calendar.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/container/assets/container-core.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/colorpicker/assets/skins/sam/colorpicker.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/editor/assets/skins/sam/editor.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/slider/assets/skins/sam/slider.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/paginator/assets/skins/sam/paginator.css"/>
+    <link rel="stylesheet" type="text/css"  href="javascript/yui/build/datatable/assets/skins/sam/datatable.css"/>
+    <link rel="stylesheet" type="text/css"  href="styles/editor.css"/>
+    <link rel="stylesheet" type="text/css"  href="styles/solstice.css"/>
+    <link rel="stylesheet" type="text/css"  href="styles/user_content.css"/>
+    <link rel="stylesheet" type="text/css"  href="styles/reset.css"/>
+    <link rel="stylesheet" type="text/css"  href="styles/fonts.css"/>
+    <link rel="stylesheet" type="text/css"  href="styles/tagging.css"/>
+    <link rel="stylesheet" type="text/css"  href="styles/sqlshare.css"/>
+
+  </head>
+
+  <body id="solstice_document_body" class="yui-skin-sam" onload="initApplication();">
+
+      <!-- BEGIN BOILERPLATE WORKSPACE -->
+      <form action="/sqlshare" method="post" accept-charset="UTF-8" id="solstice_app_form" onsubmit="return Solstice.Button.performClientAction();">
+<input type="hidden" id="solstice_selected_button" name="solstice_selected_button" value=""/>
+<div class="ss-boilerplate">
+
+<iframe id="yui-history-iframe" src="javascript/yui/build/history/assets/blank.html"></iframe>
+<input id="yui-history-field" type="hidden">
+
+<div id="ss_app" class="ss-app-container">
+
+    <div class="ss-sidebar" id="ss_sidebar">
+
+            <h3 class="ss-sidebar-logo"><a title="Welcome to SQLShare" href="#s=home"><img src="images/ss-logo.png" /></a></h3>
+
+            <div id="ss_sidebar_content" class="ss-sidebar-content">
+                <ul class="ss-sidebar-items">
+                    <li id="your_queries_li"><a href="sqlshare#s=home" title="View datasets owned by you" rel="home">Your datasets</a></li>
+                    <li id="all_queries_li"><a href="sqlshare#s=all_queries" title="View all datasets" rel="all_queries">All datasets</a></li>
+                    <li id="shared_queries_li"><a href="sqlshare#s=shared" title="View datasets shared with you" rel="shared_queries">Shared datasets</a></li>
+                    <li id="query_list_li"><a href="sqlshare#s=querylist" title="View recent query activity" rel="querylist"><span style="display:block; float:left; width:100px; padding:0;">Recent&nbsp;activity...</span><span id="nav_finished_query_count" style="display:block;float:right;padding:0; color:green;font-size:92%;padding-top:1px;"></span><span class="clear" style="height:0;padding:0;"></span>
+                    </a></li>
+                    <li><span id="recent_queries" style="cursor:pointer;">Recently viewed&nbsp;&nbsp;<span style="font-size:110%;display:inline;padding:0;">&raquo;</span></span></li>
+                </ul>
+                <ul class="ss-sidebar-items">
+                    <li id="new_upload_li"><a href="sqlshare#s=file" title="Upload a new dataset" rel="file">Upload dataset</a></li>
+                    <li id="new_query_li"><a href="sqlshare#s=query" title="Start a new query" rel="query">New query</a></li>
+                </ul>
+                <div id="tagging_sidebar"></div>
+            </div>
+
+    </div>
+
+
+    <div class="ss-content" id="ss_content">
+
+        <div id="menu_container"></div>
+        <div id="hidden_test_container" style="visibility: hidden; position: absolute; top: -900px;"></div>
+
+        <div class="ss-app-navigation">
+
+            <div id="tab_nav_tables" class="nav-container">
+                <ul class="ss-tables-list" id="table_tab_list" style="margin-right:530px;">
+                    <li id="table_tab_overflow_li" class="tab_overflow"><div id="table_tab_overflow_div"></div></li>
+                </ul>
+            </div>
+
+            <div class="ss-account-info">
+                <p><span style="color:#275877;font-weight:normal;">Logged in:</span>&nbsp;&nbsp;<span style="display:inline-block;">pmichaud</span></p>
+            </div>
+
+            <div class="clear"></div>
+
+
+
+        </div>
+
+        <div id="ss_application_wrapper">
+
+            <div class="ss-app-workspace-wrapper">
+                <div id="ss_app_workspace" style="padding-right:10px;"></div>
+            </div>
+
+            <div class="ss-editor" id="ss_editor_col">
+                <div id="edit_query_container" style="overflow-y: auto; margin-left:10px; padding-right:10px; width:480px; "></div>
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+        <div class="clear"></div>
+
+    </div>
+
+
+    <div class="clear"></div>
+
+</div>
+
+</div>
+</form>
+      <!-- END BOILERPLATE WORKSPACE -->
+
+  </body>
+</html>

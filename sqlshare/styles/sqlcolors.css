@@ -1,0 +1,12 @@
+html{cursor:text;}
+.editbox{font-family:monospace;font-size:10pt;color:#000;margin:.4em;padding:0;}
+.editbox p{margin:0;}
+span.sql-var{color:red;}
+span.sql-comment{color:#A70;}
+span.sql-literal{color:green;}
+span.sql-word{color:#000;}
+span.sql-function{color:#FF8C00;}
+span.sql-type{color:purple;}
+span.sql-separator{color:#666;}
+span.sql-number{color:#008B8B;}
+span.sql-keyword,span.sql-operator{color:blue;}

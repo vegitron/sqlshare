@@ -1,0 +1,79 @@
+/*****************
+
+Default User content style
+
+*****************/
+.sol_uc { line-height: 1.2; word-wrap: break-word; }
+
+.sol_uc h1, 
+.sol_uc h2, 
+.sol_uc h3, 
+.sol_uc h4, 
+.sol_uc h5, 
+.sol_uc h6 { margin: 10px 0; color: #000; }
+
+.sol_uc h1 { font-size: 200%; }
+.sol_uc h2 { font-size: 150%; }
+.sol_uc h3 { font-size: 117%; }
+.sol_uc h4 { font-size: 100%; }
+.sol_uc h5 { font-size: 83%; }
+.sol_uc h6 { font-size: 67%; }
+ 
+.sol_uc a:link 			{ text-decoration: underline; color: #0000ff; }
+.sol_uc a:visited 		{ text-decoration: underline; color: #6E2A8E; }
+.sol_uc a:hover			{ text-decoration: none; }
+.sol_uc a:link:hover,
+.sol_uc a:visited:hover	{ text-decoration: underline; }
+
+.sol_uc code,
+.sol_uc pre { 
+	line-height: 1.2; 
+	font-size: 12px; 
+	white-space: pre-wrap;       /* css-3 */
+ 	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ 	white-space: -pre-wrap;      /* Opera 4-6 */
+ 	white-space: -o-pre-wrap;    /* Opera 7 */
+ 	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.sol_uc p { margin: 1.2em 0; }
+
+
+
+.sol_uc blockquote, .sol_uc ul, .sol_uc ol, .sol_uc dl {
+	/*giving blockquotes and lists room to breath*/
+	margin:1em;
+}
+
+.sol_uc ol, .sol_uc ul, .sol_uc dl {
+	/*bringing lists on to the page with breathing room */
+	margin-left:3em;
+}
+
+.sol_uc ol li {
+	/*giving OL's LIs generated numbers*/
+	/* list-style: decimal outside;	*/
+}
+.sol_uc ul li {
+	/*giving UL's LIs generated disc markers*/
+	/* list-style: disc outside; */
+}
+
+/* editor mode */
+
+body.sol_uc p:first-child { margin-top: 0; }
+body.sol_uc {
+    padding: 0px;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 13px;
+} 
+
+body.sol_uc blockquote, body.sol_uc ul, body.sol_uc ol, body.sol_uc dl {
+	/*giving blockquotes and lists room to breath*/
+	margin:1em;
+}
+
+body.sol_uc ol, body.sol_uc ul, body.sol_uc dl {
+	/*bringing lists on to the page with breathing room */
+	margin-left:0;
+}

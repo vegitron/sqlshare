@@ -1,0 +1,95 @@
+#edit_description_tags { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+#edit_description_tags.yui-panel { padding: 0; border-color: #316B92; }
+#edit_description_tags .hd { font-size: 123.1%; font-weight: bold; }
+#edit_description_tags h4 { font-weight: normal; color: #777; margin-top: 5px; margin-bottom: 20px; }  
+#edit_description_tags h5 { font-size: 90%; font-weight: bold; color: #999; }
+ 
+    .tagger_input {
+        border: 1px solid #999;
+        cursor: text;
+        min-height: 1.2em;
+        padding: 5px;
+        margin-bottom: 1em;
+    }
+
+    .tagger_ac_input {
+        position: absolute;
+        left: -10000;
+        visibility: hidden;
+    }
+    
+    .tagger_tag {
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;    
+padding: 2px 5px;
+display: inline-block;
+margin-bottom: 3px;
+    }
+
+    a.tagger_tag_removable, a:link.tagger_tag_removable {
+        background: #ddd url('../images/ss-remove-x.png') no-repeat right 3px;
+        padding-right: 14px;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        height: 1.1em;
+    }
+    
+    a.tagger_tag_removable:hover, a:link.tagger_tag_removable:hover  { 
+        background: #ddd url('../images/ss-remove-x.png') no-repeat right -12px;
+    }
+
+    .tagger_view_only_tag {
+        background-color: #f6f6f6;
+        text-decoration: none;
+        color: #666;
+        height: 1.1em;
+    }
+
+
+#ss_app_workspace_table .ss-dataset-tags { margin-top: 4px; }
+
+.ss-dataset-tags { margin-top: 1em; }
+
+.ss-dataset-tags span { 
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;    
+padding: 2px 5px;
+background-color: #f6f6f6;
+font-size: 85%;
+color: #666;
+display: inline-block;
+margin-bottom: 3px;
+text-transform: lowercase;
+}
+
+.ss-click-to-tag { margin:0; font-style:italic; color:#999; }
+
+.ss-dataset-list .ss-dataset-name .ss-dataset-tags a { color: #0084B5; text-decoration: none; padding: 2px 10px; }
+.ss-dataset-list .ss-dataset-name .ss-dataset-tags a:hover { text-decoration: underline; }
+
+#tagging_sidebar { }
+#tagging_sidebar h3 { font-weight: normal; text-transform: uppercase; font-size: 92%; color: #000; padding: 0 10px; margin-top: 1em;}
+
+#tagging_sidebar span.ss-tag-name  { display:block; float:left; width:100px; overflow: hidden; text-overflow: ellipsis; padding: 0; text-transform: lowercase; color: #666; white-space: nowrap; }
+#tagging_sidebar span.ss-tag-count { display: block; float: right; padding: 1px 0 0 0; color: #bbb; font-size: 92%;  }
+
+.ie7 #tagging_sidebar .ss-sidebar-items li, .ie7 #query_list_li { padding: 2px 10px 0 10px; } 
+
+.ss-tag-header-pipe { font-weight:normal;color:#eee; padding: 0 10px;}
+.ss-tag-header {color:#0084B5; font-weight:normal; text-transform: lowercase; }
+
+#edit_description_tags.yui-panel { overflow: visible; } /* makes sure autocomplete is visible in modal */
+
+#tag_container .yui3-aclist-content {
+background-color: #e1e1e1; color: #000; border: none; 
+-webkit-box-shadow: 0 0px 4px rgba(0,0,0, .7);
+-moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.7);
+box-shadow: 0 0px 4px rgba(0, 0, 0, 0.7);
+}
+
+#tag_container .yui3-aclist-item-hover, #tag_container .yui3-aclist-item-active {
+    background-color: #999; color: #fff;
+}
