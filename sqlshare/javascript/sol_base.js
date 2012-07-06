@@ -56,6 +56,7 @@ SolBase.prototype._http = function(method, uri, obj) {
     connection.initHeader("Accept", "application/json", true);
     connection.initHeader("Content-type", "application/json", true);
     connection.initHeader("X-XSRF-Token", solstice_xsrf_token, true);
+    connection.initHeader("X-CSRFToken", $("input[name=csrfmiddlewaretoken]").val(), true);
 
     try {
         var response = connection.syncRequest(method, uri, {}, JSON.stringify(obj));
@@ -100,6 +101,8 @@ SolBase.prototype._async_http = function(method, uri, obj, callback, arg) {
     connection.initHeader("Accept", "application/json", false);
     connection.initHeader("Content-type", "application/json", false);
     connection.initHeader("X-XSRF-Token", solstice_xsrf_token, false);
+    connection.initHeader("X-CSRFToken", $("input[name=csrfmiddlewaretoken]").val(), true);
+
     var callback = {
         cache: false,
         success: this._handleSuccess,

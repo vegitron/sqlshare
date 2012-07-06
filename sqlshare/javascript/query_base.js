@@ -404,7 +404,7 @@ QueryBase.prototype._processQuery = function() {
 QueryBase.prototype._postQuery = function(o) {
     if (o.code == 202) {
         var new_location = o.conn.getResponseHeader['Location'];
-        var full_url = this._getRestRoot()+"/proxy/"+new_location;
+        var full_url = new_location;
         this._full_url = full_url;
         this.AsyncGET(full_url, this._postInitialRedirect);
     }
