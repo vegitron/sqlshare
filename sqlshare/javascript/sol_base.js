@@ -155,8 +155,8 @@ SolBase.prototype._renderTo = function() {
                 compiled = Solstice.CompiledTemplates.get(this._getApplication(), template);
             }
 
-            $(div).html($.tmpl(this._getApplication()+"/"+template, this.params));
-           // content = compiled.call(this._getApplication(), template, params);
+            var content = $("<div />").append($.tmpl(this._getApplication()+"/"+template, params)).html();
+            $(div).html(content);
         }
         catch (e) {
             Solstice.log(e);
