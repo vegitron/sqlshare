@@ -1,15 +1,18 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 import httplib
 
+@login_required
 def home(request):
    return render_to_response('home.html', {})
 
+@login_required
 def user(request):
     return HttpResponse('{"schema":"pmichaud","username":"pmichaud"}')
 
-
+@login_required
 def proxy(request, path):
     conn = httplib.HTTPSConnection(
         'sqlshare-rest-test.cloudapp.net'
