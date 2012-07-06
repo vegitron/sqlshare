@@ -477,14 +477,19 @@ SQLShare.prototype._hideToolTips = function() {
 
 SQLShare.prototype._loadPreferences = function() {
     this._loading_prefs = true;
-    this.AsyncGET(this._getRestRoot()+"/pref/recent", this._postPref);
+
+    var json = Solstice.Cookie.read('recent');
+    if (json) {
+        this._recentQueries = jQuery.parseJSON(json);
+    }
+    else {
+        this._recentQueries = [];
+    }
+
+    this._postPref();
 };
 
 SQLShare.prototype._postPref = function(o) {
-    this._recentQueries = o.data;
-    if (!this._recentQueries) {
-        this._recentQueries = [];
-    }
     if (this._load_recent_queries) {
         this._load_recent_queries = false;
         this._drawRecentQueriesInterface();
@@ -519,6 +524,6 @@ SQLShare.prototype._newRecentQuery = function(name) {
         this._recentQueries.splice(SQLShare.Constants.MAX_RECENT_QUERIES);
     }
 
-    this.AsyncPUT(this._getRestRoot()+"/pref/recent", this._recentQueries, function(){});
+    Solstice.Cookie.set('recent', JSON.stringify(this._recentQueries), 60*24*30*12);
 }
 
