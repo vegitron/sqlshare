@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.core.context_processors import csrf
+import urllib
 import re
 
 import httplib
@@ -52,6 +53,7 @@ def user(request):
 @login_required
 @csrf_protect
 def proxy(request, path):
+
     conn = httplib.HTTPSConnection(
         'sqlshare-rest-test.cloudapp.net'
     )
@@ -59,16 +61,14 @@ def proxy(request, path):
 
     body = request.read()
 
-
     sqlshare_secret = settings.SQLSHARE_SECRET
-    conn.putrequest(request.META['REQUEST_METHOD'], '/'+path)
+    conn.putrequest(request.META['REQUEST_METHOD'], '/'+urllib.quote(path))
     conn.putheader('Authorization', 'ss_trust %s : %s' % (request.user, sqlshare_secret))
     conn.putheader('Accept', 'application/json')
     conn.putheader('Content-type', 'application/json')
 
     if len(body) > 0:
         conn.putheader('Content-Length', len(body))
-
 
     conn.endheaders()
 
