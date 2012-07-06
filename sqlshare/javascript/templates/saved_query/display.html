@@ -54,7 +54,7 @@
 </button>
         <button class="ss-actions-button" id="${id}_snapshot">Create snapshot
 </button>
-        {{if !is_editable}}<button class="ss-actions-button" title="Download this dataset" id="${id}_download_query">Download
+        {{if !defined is_editable || !is_editable}}<button class="ss-actions-button" title="Download this dataset" id="${id}_download_query">Download
 </button>{{/if}}
         {{if is_editable}}
         <button class="ss-actions-button" title="View more actions" id="action_menu_div">More actions

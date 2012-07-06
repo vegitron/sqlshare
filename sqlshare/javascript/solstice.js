@@ -31,7 +31,12 @@ Solstice.log = function(message){
                 setTimeout('new Solstice.Element("sol_js_warning_flasher").fadeOutAndDestroy()', 5*1000);
             }
 
-            window.console.log(message);
+            if (window.console.trace) {
+                window.console.trace(message);
+            }
+            else {
+                window.console.trace(message);
+            }
 
         }else{
             alert(message);
