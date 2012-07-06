@@ -2,17 +2,21 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 import httplib
 
 @login_required
+@csrf_protect
 def home(request):
    return render_to_response('home.html', {})
 
 @login_required
+@csrf_protect
 def user(request):
     return HttpResponse('{"schema":"pmichaud","username":"pmichaud"}')
 
 @login_required
+@csrf_protect
 def proxy(request, path):
     conn = httplib.HTTPSConnection(
         'sqlshare-rest-test.cloudapp.net'
