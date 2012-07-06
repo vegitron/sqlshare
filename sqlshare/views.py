@@ -16,8 +16,6 @@ def proxy(request, path):
     )
     conn.connect()
 
-    print request
-
     sqlshare_secret = settings.SQLSHARE_SECRET
     conn.putrequest(request.META['REQUEST_METHOD'], '/'+path)
     conn.putheader('Authorization', 'ss_trust pmichaud : %s' % (sqlshare_secret))
@@ -45,8 +43,6 @@ def proxy(request, path):
 
         response[name] = value
 
-    print ss_response
-    print ss_response.status
     response.status_code = ss_response.status
 
     return response
