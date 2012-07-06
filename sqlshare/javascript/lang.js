@@ -172,6 +172,22 @@ Solstice.Lang.prototype._initialize = function(namespace, others) {
 }
 
 Solstice.Lang.prototype._fetchLangData = function(namespaces){
-    var req = Solstice.Remote.run('Solstice', 'init_lang_data', { namespaces : namespaces }, null, false);
+
+    var cfg = {
+        method: 'GET',
+        sync: true
+    };
+
+    for (index in namespaces) {
+        var url = "/sqlshare/javascript/lang/"+namespaces[index]+".json";
+
+        var request;
+        YUI().use("io-base", function(Y) {
+            request = Y.io(url, cfg);
+        });
+
+        Solstice.LangData[namespaces[index]] = jQuery.parseJSON(request.responseText);
+    }
+
     return true;
 }
