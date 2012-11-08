@@ -179,7 +179,7 @@ Solstice.Lang.prototype._fetchLangData = function(namespaces){
     };
 
     for (index in namespaces) {
-        var url = "/sqlshare/javascript/lang/"+namespaces[index]+".json";
+        var url = "/static/javascript/lang/"+namespaces[index]+".json";
 
         var request;
         YUI().use("io-base", function(Y) {

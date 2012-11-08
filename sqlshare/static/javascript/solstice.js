@@ -1118,7 +1118,7 @@ Solstice.CompiledTemplates.init = function(namespace, template) {
         sync: true
     };
 
-    var url = "/sqlshare/javascript/templates/"+template;
+    var url = "/static/javascript/templates/"+template;
 
     var request;
     YUI().use("io-base", function(Y) {
