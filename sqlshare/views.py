@@ -140,12 +140,23 @@ def upload(request):
 
     ss_id = json.loads(response)
 
-    client_data = {
-        "sol_id": user_file.id,
-        "ss_id": ss_id,
-    }
+    ## This is the old File::Parser bit
 
-    json_response = json.dumps(client_data)
+    conn.putrequest('GET', "/REST.svc/v3/file/%s/parser" % ss_id)
+    conn.putheader('Authorization', 'ss_trust %s : %s' % (request.user, sqlshare_secret))
+    conn.putheader('Accept', 'application/json')
+
+    conn.endheaders()
+
+    parser_response = conn.getresponse()
+
+
+    json_values = json.loads(parser_response.read())
+    json_values["sol_id"] = user_file.id
+    json_values["ss_id"] = ss_id
+
+    
+    json_response = json.dumps(json_values)
 
     return HttpResponse(json_response)
 

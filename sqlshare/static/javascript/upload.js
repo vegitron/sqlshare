@@ -74,8 +74,7 @@ Uploader.prototype._onUploadProgress = function(ev) {
 
 Uploader.prototype._onSuccess = function(ev) {
     var data = ev.data;
-    document.getElementById(this.id+"_"+ev.id+"_file_status").style.width = "500px";
-    document.getElementById(this.id+"_"+ev.id+"_file_id").value = data.key;
+    this._postParser(data);
 };
 
 Uploader.prototype._onAllFinished = function(ev) {
@@ -86,9 +85,6 @@ Uploader.prototype._onAllFinished = function(ev) {
 Uploader.prototype._postFiles = function(ev) {
     var elements = document.getElementsByName(this.id+'_upload_file');
     var ids = [];
-    for (var i = 0; i < elements.length; i++) {
-        this._beginFile(elements[i].value);
-    }
 };
 
 Uploader.prototype._beginFile = function(id) {
@@ -106,16 +102,10 @@ Uploader.prototype._fetchFileOptions = function(o) {
 };
 
 
-Uploader.prototype._postParser = function(o, file_name) {
-    if (o.code == 200) {
-        this._current_file_name = file_name;
-        this._parser_options = o.data;
-        this._drawParserOptions(o.data);
-        return;
-    }
-    else {
-        this._showUploadError();
-    }
+Uploader.prototype._postParser = function(data) {
+    this._current_file_name = "TRACE_THIS";
+    this._parser_options = data;
+    this._drawParserOptions(data);
 }
 
 Uploader.prototype._showUploadError = function() {
