@@ -23,28 +23,22 @@ def home(request):
 @login_required
 @csrf_protect
 def user(request):
-    conn = httplib.HTTPSConnection(
-        'sqlshare-rest-test.cloudapp.net'
-    )
-    conn.connect()
-    conn.putrequest('GET', '/REST.svc/v1/user/%s' % (request.user))
-    conn.putheader('Accept', 'application/json')
-    conn.endheaders()
-    response = conn.getresponse()
+    response = _send_request('GET', '/REST.svc/v1/user/%s' % (request.user),
+                { "Accept": "application/json" })
 
     code = response.status
     content = response.read()
 
     if code == 404:
-        conn.putrequest('PUT', '/REST.svc/v1/user/%s' % (request.user))
-        conn.putheader('Accept', 'application/json')
-        conn.putheader('Content-Type', 'application/json')
-        conn.putheader('Content-Length', '0')
-        conn.endheaders()
+        response = _send_request('PUT', '/REST.svc/v1/user/%s' % (request.user),
+                {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Content-Length": "0"
+                })
         response = conn.getresponse()
         code = response.status
         content = response.read()
-
 
     user = request.user
     user_response = HttpResponse(content)
@@ -56,28 +50,13 @@ def user(request):
 @csrf_protect
 def proxy(request, path):
 
-    conn = httplib.HTTPSConnection(
-        'sqlshare-rest-test.cloudapp.net'
-    )
-    conn.connect()
-
     body = request.read()
+    ss_response = _send_request(request.META['REQUEST_METHOD'], '/'+urllib.quote(path),
+                {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                }, body=body, user=request.user)
 
-    sqlshare_secret = settings.SQLSHARE_SECRET
-    conn.putrequest(request.META['REQUEST_METHOD'], '/'+urllib.quote(path))
-    conn.putheader('Authorization', 'ss_trust %s : %s' % (request.user, sqlshare_secret))
-    conn.putheader('Accept', 'application/json')
-    conn.putheader('Content-type', 'application/json')
-
-    if len(body) > 0:
-        conn.putheader('Content-Length', len(body))
-
-    conn.endheaders()
-
-    if len(body) > 0:
-        conn.send(body)
-
-    ss_response = conn.getresponse()
 
     headers = ss_response.getheaders()
     response = HttpResponse(ss_response.read())
@@ -116,24 +95,11 @@ def upload(request):
 
     content = _getMultipartData(user_file.user_file.path, 0, append_new_line=True)
 
-    conn = httplib.HTTPSConnection(
-        'sqlshare-rest-test.cloudapp.net'
-    )
-    conn.connect()
-
-    sqlshare_secret = settings.SQLSHARE_SECRET
-    conn.putrequest('POST', "/REST.svc/v3/file")
-    conn.putheader('Authorization', 'ss_trust %s : %s' % (request.user, sqlshare_secret))
-    conn.putheader('Accept', 'application/json')
-    conn.putheader('Content-type', 'application/octet-stream')
-
-    conn.putheader('Content-Length', len(content))
-
-    conn.endheaders()
-
-    conn.send(content)
-
-    ss_response = conn.getresponse()
+    ss_response = _send_request('POST', '/REST.svc/v3/file',
+                {
+                    "Accept": "application/json",
+                    "Content-Type": "application/octet-stream",
+                }, body=content, user=request.user)
 
     headers = ss_response.getheaders()
     response = ss_response.read()
@@ -141,21 +107,16 @@ def upload(request):
     ss_id = json.loads(response)
 
     ## This is the old File::Parser bit
+    parser_response = _send_request('GET', '/REST.svc/v3/file/%s/parser' % ss_id,
+                {
+                    "Accept": "application/json",
+                }, user=request.user)
 
-    conn.putrequest('GET', "/REST.svc/v3/file/%s/parser" % ss_id)
-    conn.putheader('Authorization', 'ss_trust %s : %s' % (request.user, sqlshare_secret))
-    conn.putheader('Accept', 'application/json')
-
-    conn.endheaders()
-
-    parser_response = conn.getresponse()
-
-
-    json_values = json.loads(parser_response.read())
+    parser_data = parser_response.read()
+    json_values = json.loads(parser_data)
     json_values["sol_id"] = user_file.id
     json_values["ss_id"] = ss_id
 
-    
     json_response = json.dumps(json_values)
 
     return HttpResponse(json_response)
@@ -184,3 +145,30 @@ def _getMultipartData(file_name, position, append_new_line=False):
     ])
 
     return multipart_data
+
+def _send_request(method, url, headers, body=None, user=None):
+    conn = httplib.HTTPSConnection(
+        'sqlshare-rest-test.cloudapp.net'
+    )
+    conn.connect()
+
+    conn.putrequest(method, url)
+
+    for header in headers:
+        conn.putheader(header, headers[header])
+
+    if user is not None:
+        sqlshare_secret = settings.SQLSHARE_SECRET
+        conn.putheader('Authorization', 'ss_trust %s : %s' % (user, sqlshare_secret))
+
+    if body and len(body) > 0:
+        conn.putheader('Content-Length', len(body))
+
+    conn.endheaders()
+
+    if body and len(body) > 0:
+        conn.send(body)
+
+    response = conn.getresponse()
+
+    return response
