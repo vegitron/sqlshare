@@ -4,7 +4,7 @@
 * @extends YAHOO.widget.Uploader
 */
 YAHOO.widget.SolsticeUploader = function(containerId, buttonSkin, forceTransparent) {
-    YAHOO.widget.Uploader.SWFURL = Solstice.getDocumentBase() + "javascript/yui/build/uploader/assets/uploader.swf";
+    YAHOO.widget.Uploader.SWFURL = Solstice.getDocumentBase() + "static/javascript/yui/build/uploader/assets/uploader.swf";
 
     YAHOO.widget.SolsticeUploader.superclass.constructor.call(this, containerId, buttonSkin, forceTransparent);
 
@@ -25,14 +25,14 @@ YAHOO.widget.SolsticeUploader = function(containerId, buttonSkin, forceTranspare
 };
 
 YAHOO.lang.extend(YAHOO.widget.SolsticeUploader, YAHOO.widget.Uploader, {
-    _uploadURL: Solstice.getDocumentBase() + "file_upload.cgi",
+    _uploadURL: Solstice.getDocumentBase() + "/sqlshare/upload/",
 
     setUploadURL: function(url) {
         if (url !== null) {
             this._uploadURL = url;
         }
     },
-
+    
     _uploadParams: {
         is_clean: true,
         is_json : true
@@ -69,6 +69,9 @@ YAHOO.lang.extend(YAHOO.widget.SolsticeUploader, YAHOO.widget.Uploader, {
             }
             this._finishedCount = 0;
             this.setSimUploadLimit(3);
+            var params = this._uploadParams;
+
+            params["csrfmiddlewaretoken"] = $("input[name=csrfmiddlewaretoken]").val();
             this.uploadAll(this._uploadURL, 'POST', this._uploadParams, 'file');
         }
     },

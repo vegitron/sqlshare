@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.conf import settings
+from django.utils import simplejson as json
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.core.context_processors import csrf
+from sqlshare.models import UserFile
 import urllib
 import re
 
@@ -106,3 +108,68 @@ def proxy(request, path):
 
     return response
 
+@login_required
+@csrf_protect
+def upload(request):
+    user_file = UserFile(user_file=request.FILES["file"])
+    user_file.save()
+
+    content = _getMultipartData(user_file.user_file.path, 0, append_new_line=True)
+
+    conn = httplib.HTTPSConnection(
+        'sqlshare-rest-test.cloudapp.net'
+    )
+    conn.connect()
+
+    sqlshare_secret = settings.SQLSHARE_SECRET
+    conn.putrequest('POST', "/REST.svc/v3/file")
+    conn.putheader('Authorization', 'ss_trust %s : %s' % (request.user, sqlshare_secret))
+    conn.putheader('Accept', 'application/json')
+    conn.putheader('Content-type', 'application/octet-stream')
+
+    conn.putheader('Content-Length', len(content))
+
+    conn.endheaders()
+
+    conn.send(content)
+
+    ss_response = conn.getresponse()
+
+    headers = ss_response.getheaders()
+    response = ss_response.read()
+
+    ss_id = json.loads(response)
+
+    client_data = {
+        "sol_id": user_file.id,
+        "ss_id": ss_id,
+    }
+
+    json_response = json.dumps(client_data)
+
+    return HttpResponse(json_response)
+
+def _getMultipartData(file_name, position, append_new_line=False):
+    upload_chunk_size = 10485760
+
+    handle = open(file_name, 'r')
+    handle.seek(position * upload_chunk_size, 0)
+
+    chunk = handle.read(upload_chunk_size)
+
+    if append_new_line:
+        chunk += "\n\n"
+
+    boundary = '----------ThIs_Is_tHe_bouNdaRY_$'
+    name = re.match(".*/([^/]+)$", file_name).group(1)
+
+    multipart_data = "\r\n".join([
+        "--%s" % boundary,
+        "Content-Disposition: form-data; name=\"file\" filename=\"%s\";" % name,
+        "",
+        chunk,
+        "--%s--" % boundary,
+        ""
+    ])
+
+    return multipart_data
