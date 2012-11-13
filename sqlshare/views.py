@@ -17,7 +17,6 @@ def home(request):
    user = request.user
    c = { "user":user }
    c.update(csrf(request))
-   print csrf(request)
    return render_to_response('home.html', c)
 
 @login_required
@@ -98,7 +97,7 @@ def upload(request):
     ss_response = _send_request('POST', '/REST.svc/v3/file',
                 {
                     "Accept": "application/json",
-                    "Content-Type": "application/octet-stream",
+                    "Content-Type": _getMultipartContentType(),
                 }, body=content, user=request.user)
 
     headers = ss_response.getheaders()
@@ -121,27 +120,106 @@ def upload(request):
 
     return HttpResponse(json_response)
 
+@login_required
+@csrf_protect
+def send_file(request):
+    return HttpResponse(stream_upload(request))
+
+def stream_upload(request):
+    body = request.read()
+    body_json = json.loads(body)
+
+    has_error = False
+    ss_id = body_json["ss_id"]
+    user_file = UserFile.objects.get(pk=body_json["sol_id"])
+
+    total_chunks = _getChunkCount(user_file)
+
+    yield '{"total":%s, "progress":"' % total_chunks
+    chunk_count = 1
+    content = _getMultipartData(user_file.user_file.path, chunk_count)
+    while content is not None:
+        ss_response = _send_request('POST', '/REST.svc/v3/file/%s' % ss_id,
+                {
+                    "Accept": "application/json",
+                    "Content-Type": _getMultipartContentType(),
+                }, body=content, user=request.user)
+
+        headers = ss_response.getheaders()
+        response = ss_response.read()
+
+        if ss_response.status != 200:
+            body = ss_response.read()
+            has_error = True
+            yield '", "error":%s, "code":"%s"}' % (body, ss_response.status)
+            break
+
+        yield "."
+        chunk_count += 1
+        content = _getMultipartData(user_file.user_file.path, chunk_count)
+
+
+    if not has_error:
+        put_json = {}
+        put_json["parser"] = {}
+
+        if body_json["parser"]["delimiter"] == "\\t":
+            put_json["parser"]["delimiter"] = "\t"
+        else:
+            put_json["parser"]["delimiter"] = body_json["parser"]["delimiter"]
+
+        if body_json["parser"]["has_column_headers"]:
+            put_json["parser"]["has_column_headers"] = True
+        else:
+            put_json["parser"]["has_column_headers"] = False
+
+        if body_json["is_public"]:
+            put_json["is_public"] = True
+        else:
+            put_json["is_public"] = False
+
+        put_json["table_name"] = body_json["table_name"]
+        put_json["columns"] = body_json["columns"]
+        put_json["dataset_name"] = body_json["dataset_name"]
+        put_json["description"] = body_json["description"]
+        put_json["sample_data"] = None
+
+        put_response = _send_request("PUT", "/REST.svc/v3/file/%s/database" % ss_id,
+                    {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                    }, body=json.dumps(put_json), user=request.user)
+
+        if put_response.status != 202:
+            body = put_response.read()
+            yield '","error":%s, "code":"%s"}' % (body, put_response.status)
+
+    yield '"}'
+
 def _getMultipartData(file_name, position, append_new_line=False):
-    upload_chunk_size = 10485760
+    upload_chunk_size = _getUploadChunkSize()
 
     handle = open(file_name, 'r')
     handle.seek(position * upload_chunk_size, 0)
 
     chunk = handle.read(upload_chunk_size)
 
-    if append_new_line:
+    if chunk == "":
+        return None
+
+    if append_new_line and len(chunk) < upload_chunk_size:
         chunk += "\n\n"
 
-    boundary = '----------ThIs_Is_tHe_bouNdaRY_$'
+    boundary = _getMultipartBoundary()
     name = re.match(".*/([^/]+)$", file_name).group(1)
 
     multipart_data = "\r\n".join([
         "--%s" % boundary,
         "Content-Disposition: form-data; name=\"file\" filename=\"%s\";" % name,
+        "Content-Type: text/csv",
         "",
         chunk,
         "--%s--" % boundary,
-        ""
     ])
 
     return multipart_data
@@ -172,3 +250,19 @@ def _send_request(method, url, headers, body=None, user=None):
     response = conn.getresponse()
 
     return response
+
+def _getChunkCount(user_file):
+    file_size = user_file.user_file.size
+
+    return int(file_size / _getUploadChunkSize())
+
+
+def _getMultipartBoundary():
+    return '----------ThIs_Is_tHe_bouNdaRY_$'
+
+def _getMultipartContentType():
+    return "multipart/form-data; boundary=%s" % _getMultipartBoundary()
+
+# TODO - make config?
+def _getUploadChunkSize():
+    return 10485760
