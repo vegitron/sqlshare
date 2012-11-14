@@ -427,8 +427,8 @@ SavedQuery.prototype._postExposeStatementEditor = function(ev) {
     this._editor = CodeMirror.fromTextArea(area_id, {
         textWrapping: false,
         parserfile: "parsesql.js",
-        stylesheet: solstice_document_base+"/sqlshare/styles/sqlcolors.css",
-        path: solstice_document_base+'/sqlshare/javascript/codemirror/',
+        stylesheet: solstice_document_base+"/static/styles/sqlcolors.css",
+        path: solstice_document_base+'/static/javascript/codemirror/',
         autoMatchParens: true
     });
 
