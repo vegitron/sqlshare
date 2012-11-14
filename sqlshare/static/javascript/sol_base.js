@@ -210,6 +210,6 @@ SolBase.prototype.hideAllErrors = function() {
 
 SolBase.prototype.showInputLoading = function(container_id, field) {
     var error_container = document.getElementById('err_'+field+'_'+container_id);
-    error_container.innerHTML = '<img src="images/processing.gif" alt="">';
+    error_container.innerHTML = '<img src="/static/images/processing.gif" alt="">';
     Solstice.Element.showInline(error_container);
 };

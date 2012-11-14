@@ -565,7 +565,7 @@ Solstice.YahooUI.PopIn.init = function(name, is_modal) {
 
     // Add temporary content and render
     popin.setHeader('&nbsp;');
-    popin.setBody('Loading... <img src="images/processing.gif" alt="" style="vertical-align: middle;">');
+    popin.setBody('Loading... <img src="static/images/processing.gif" alt="" style="vertical-align: middle;">');
     popin.render('solstice_app_form');
 
     return popin;
