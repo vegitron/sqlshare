@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.core.context_processors import csrf
 from sqlshare.models import UserFile
 import urllib
+import math
 import re
 
 import httplib
@@ -254,7 +255,7 @@ def _send_request(method, url, headers, body=None, user=None):
 def _getChunkCount(user_file):
     file_size = user_file.user_file.size
 
-    return int(file_size / _getUploadChunkSize())
+    return int(math.ceil(file_size / float(_getUploadChunkSize())))
 
 
 def _getMultipartBoundary():
