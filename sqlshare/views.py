@@ -225,9 +225,11 @@ def _getMultipartData(file_name, position, append_new_line=False):
     return multipart_data
 
 def _send_request(method, url, headers, body=None, user=None):
-    conn = httplib.HTTPSConnection(
-        'sqlshare-rest-test.cloudapp.net'
-    )
+    host = 'sqlshare-rest.cloudapp.net'
+    if hasattr(settings, "SQLSHARE_REST_HOST"):
+        host = settings.SQLSHARE_REST_HOST
+
+    conn = httplib.HTTPSConnection(host)
     conn.connect()
 
     conn.putrequest(method, url)
@@ -236,8 +238,18 @@ def _send_request(method, url, headers, body=None, user=None):
         conn.putheader(header, headers[header])
 
     if user is not None:
-        sqlshare_secret = settings.SQLSHARE_SECRET
-        conn.putheader('Authorization', 'ss_trust %s : %s' % (user, sqlshare_secret))
+        auth_type = "secret"
+        if hasattr(settings, "SQLSHARE_AUTH_TYPE"):
+            auth_type = settings.SQLSHARE_AUTH_TYPE
+
+        if auth_type == "secret":
+            sqlshare_secret = settings.SQLSHARE_SECRET
+            conn.putheader('Authorization', 'ss_trust %s : %s' % (user, sqlshare_secret))
+
+        if auth_type == "apikey":
+            if settings.SQLSHARE_API_USER != user:
+                raise("Logged in user doesn't match the SQLSHARE user in settings")
+            conn.putheader('Authorization', 'ss_apikey %s : %s' % (settings.SQLSHARE_API_USER, settings.SQLSHARE_API_KEY))
 
     if body and len(body) > 0:
         conn.putheader('Content-Length', len(body))
