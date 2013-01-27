@@ -36,7 +36,6 @@ def user(request):
                     "Content-Type": "application/json",
                     "Content-Length": "0"
                 })
-        response = conn.getresponse()
         code = response.status
         content = response.read()
 

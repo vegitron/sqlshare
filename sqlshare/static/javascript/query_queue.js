@@ -75,7 +75,7 @@ QueryQueue.prototype._drawQueries = function(data) {
     SQLShare.onChangeContent.fire();
 
     var me = this;
-    this.setCurrentTimeout(window.setTimeout(function() { me._fetchUpdates(); }, 2000));
+//    this.setCurrentTimeout(window.setTimeout(function() { me._fetchUpdates(); }, 2000));
 };
 
 QueryQueue.prototype._handleListClick = function(ev) {
