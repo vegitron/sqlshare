@@ -247,8 +247,8 @@ def _send_request(method, url, headers, body=None, user=None):
             conn.putheader('Authorization', 'ss_trust %s : %s' % (user, sqlshare_secret))
 
         if auth_type == "apikey":
-            if settings.SQLSHARE_API_USER != user:
-                raise("Logged in user doesn't match the SQLSHARE user in settings")
+            if settings.SQLSHARE_API_USER != user.username:
+                raise Exception("Logged in user doesn't match the SQLSHARE user in settings")
             conn.putheader('Authorization', 'ss_apikey %s : %s' % (settings.SQLSHARE_API_USER, settings.SQLSHARE_API_KEY))
 
     if body and len(body) > 0:
