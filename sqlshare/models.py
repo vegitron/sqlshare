@@ -47,6 +47,35 @@ class Dataset(models.Model):
 
         return data
 
+    def set_access(self, accounts, emails):
+        data = {
+            'is_shared': False,
+            'is_public': False,
+            'authorized_viewers': accounts,
+        }
+
+        if len(accounts) or len(emails):
+            data['is_shared'] = True
+
+        schema = self.schema
+        name = self.name
+
+        url = '/REST.svc/v2/db/dataset/%s/%s/permissions' % (urllib.quote(schema), urllib.quote(name))
+
+        _send_request('PUT', url, {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+        }, body=json.dumps(data), user=schema)
+
+        stored_dataset, was_created = Dataset.objects.get_or_create(schema = self.schema, name = self.name)
+
+        DatasetEmailAccess.objects.filter(dataset=stored_dataset, is_active=False, email__in=emails).update(is_active = True)
+
+        DatasetEmailAccess.objects.filter(dataset=stored_dataset, is_active=True).exclude(email__in=emails).update(is_active = False)
+
+        for email in emails:
+            res, created = DatasetEmailAccess.objects.get_or_create(dataset=stored_dataset, is_active=True, email=email)
+
     def _get_server_data(self):
         schema = self.schema
         name = self.name

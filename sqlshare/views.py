@@ -124,7 +124,6 @@ def upload(request):
 @login_required
 @csrf_protect
 def dataset_permissions(request, schema, table_name):
-
     response = _send_request('GET', '/REST.svc/v1/user/%s' % (request.user),
                 { "Accept": "application/json" })
 
@@ -138,8 +137,19 @@ def dataset_permissions(request, schema, table_name):
     if (person_schema != schema):
         return HttpResponse(status = 403)
 
-
     dataset = Dataset(schema=schema, name=table_name)
+
+    if request.method == "PUT":
+        json_data = json.loads(request.raw_post_data)
+
+        accounts = json_data["accounts"]
+        emails = json_data["emails"]
+
+        dataset.set_access(accounts, emails)
+
+        return HttpResponse("")
+
+
     access = dataset.get_all_access()
 
     return HttpResponse(json.dumps(access))
