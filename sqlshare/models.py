@@ -20,6 +20,26 @@ class Dataset(models.Model):
     schema = models.CharField(max_length = 100)
     name = models.CharField(max_length = 140)
 
+    def get_url(self):
+        base_url = reverse('sqlshare.views.home')
+
+        return "%s#s=query/%s/%s" % (base_url, urllib.quote(self.schema), urllib.quote(self.name))
+
+    def get_server_access(self):
+        return self._get_server_data()
+
+    def set_server_access(self, access):
+        schema = self.schema
+        name = self.name
+
+        url = '/REST.svc/v2/db/dataset/%s/%s/permissions' % (urllib.quote(schema), urllib.quote(name))
+
+        response = _send_request('PUT', url, {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+        }, body=json.dumps(access), user=schema)
+
+
     def get_all_access(self):
         server_data = self._get_server_data()
 
@@ -135,6 +155,13 @@ class DatasetEmailAccess(models.Model):
     dataset = models.ForeignKey(Dataset)
     email = models.CharField(max_length = 140)
     is_active = models.BooleanField()
+
+    def get_accept_url(self):
+        token = self.get_token()
+        return reverse('sqlshare.views.accept_dataset', kwargs={
+            'token': token
+        })
+
 
 
     def get_access_url(self):
