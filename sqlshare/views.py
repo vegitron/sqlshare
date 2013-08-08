@@ -145,7 +145,7 @@ def dataset_permissions(request, schema, table_name):
         accounts = json_data["accounts"]
         emails = json_data["emails"]
 
-        dataset.set_access(accounts, emails)
+        dataset.set_access(accounts, emails, request.user)
 
         return HttpResponse("")
 
