@@ -5,6 +5,7 @@ from django.utils import simplejson as json
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.core.context_processors import csrf
+from django.template import RequestContext
 from sqlshare.models import UserFile, Dataset, DatasetEmailAccess
 from sqlshare.utils import _send_request
 import urllib
@@ -19,7 +20,7 @@ def home(request):
    user = request.user
    c = { "user":user }
    c.update(csrf(request))
-   return render_to_response('home.html', c)
+   return render_to_response('home.html', c, RequestContext(request))
 
 @login_required
 @csrf_protect
@@ -157,6 +158,15 @@ def dataset_permissions(request, schema, table_name):
 @login_required
 @csrf_protect
 def email_access(request, token):
+    email_access = DatasetEmailAccess.get_email_access_for_token(token)
+
+    print "EA: ", email_access
+
+    print "DS NAme: ", email_access.dataset.name
+    
+    return render_to_response('accept_dataset.html', {
+        'dataset_name': email_access.dataset.name,
+    }, RequestContext(request))
     return HttpResponse("")
 
 @login_required

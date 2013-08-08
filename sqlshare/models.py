@@ -152,3 +152,15 @@ class DatasetEmailAccess(models.Model):
         return binascii.hexlify(AES.new(settings.SECRET_KEY[:32]).encrypt(pad(string)))
 
 
+    @staticmethod
+    def get_email_access_for_token(token):
+        padded = AES.new(settings.SECRET_KEY[:32]).decrypt(binascii.unhexlify(token))
+
+        withe = re.sub('\.+$', '', padded)
+        test_id = re.sub('^e_', '', withe)
+
+        return DatasetEmailAccess.objects.get(pk = test_id)
+
+
+
+
