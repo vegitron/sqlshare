@@ -2,7 +2,13 @@ from django.db import models
 from sqlshare.utils import _send_request
 from django.utils import simplejson as json
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
+from django.conf import settings
+from django.template.loader import render_to_string
 import urllib
+import binascii
+from Crypto.Cipher import AES
 
 # Create your models here.
 
@@ -76,6 +82,25 @@ class Dataset(models.Model):
         for email in emails:
             res, created = DatasetEmailAccess.objects.get_or_create(dataset=stored_dataset, is_active=True, email=email)
 
+            if created:
+                self.send_email_notification(res)
+
+    def send_email_notification(self, email_access):
+        url = email_access.get_access_url()
+
+        values = {
+            'url': url,
+            'dataset': self.name,
+            'owner_name': '',
+        }
+
+        text_version = render_to_string('access_email/text.html', values)
+        html_version = render_to_string('access_email/html.html', values)
+
+
+        print "Email: ", email_access.email, " PK: ", email_access.pk
+        print "HTML: ", html_version
+
     def _get_server_data(self):
         schema = self.schema
         name = self.name
@@ -94,5 +119,20 @@ class DatasetEmailAccess(models.Model):
     dataset = models.ForeignKey(Dataset)
     email = models.CharField(max_length = 140)
     is_active = models.BooleanField()
+
+
+    def get_access_url(self):
+        token = self.get_token()
+        return reverse('sqlshare.views.email_access', kwargs={
+            'token': token
+        })
+
+
+    def get_token(self):
+        BLOCK_SIZE = 32
+        pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * "."
+
+        string = "e_%s" % (self.pk)
+        return binascii.hexlify(AES.new(settings.SECRET_KEY[:32]).encrypt(pad(string)))
 
 

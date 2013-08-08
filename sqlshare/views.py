@@ -156,6 +156,11 @@ def dataset_permissions(request, schema, table_name):
 
 @login_required
 @csrf_protect
+def email_access(request, token):
+    return HttpResponse("")
+
+@login_required
+@csrf_protect
 def send_file(request):
     return HttpResponse(stream_upload(request))
 
